@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida</title>
+</head>
+<body>
+    
+    <header>
+        <h1>Bienvenido al sistema</h1>
+    </header>
+
+    <main>
+        <h2>Ingrese sus datos</h2>
+        <!-- Form para que el usuario ingrese sus datos que luego serán mostrados -->
+        <form id="datosUsuarioForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+            
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required><br><br>
+            
+            <label for="ciudad">Ciudad:</label>
+            <input type="text" id="ciudad" name="ciudad" required><br><br>
+    
+            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br><br>
+            
+            <input type="submit" value="Enviar">
+        </form>
+    
+        <script>
+            // Función que calcula la cantidad de dias vividos
+            function calcularDiasVividos(fechaNacimiento) {
+                const fechaActual = new Date();
+                const fechaNac = new Date(fechaNacimiento);
+                const diferenciaMilisegundos = fechaActual - fechaNac;
+                const diasVividos = Math.floor(diferenciaMilisegundos / (1000 * 60 * 60 * 24));
+                return diasVividos;
+            }
+    
+            // Función que muestra el mensaje de bienvenida y los días vividos
+            function mostrarMensajeBienvenida(event) {
+                
+                // Método para evitar que el formulario se envíe vacío
+                event.preventDefault();
+    
+                // Obtener los valores ingresados por el usuario
+                let nombre = document.getElementById("nombre").value;
+                let apellido = document.getElementById("apellido").value;
+                let ciudad = document.getElementById("ciudad").value;
+                let fechaNacimiento = document.getElementById("fechaNacimiento").value;
+    
+                // Construir el mensaje de bienvenida
+                let mensajeBienvenida = `¡Bienvenido, ${nombre} ${apellido} de ${ciudad}!`;
+                alert(mensajeBienvenida);
+    
+                // Calcular los días vividos
+                let diasVividos = calcularDiasVividos(fechaNacimiento);
+    
+                // Mostrar el mensaje con los días vividos
+                let mensajeDiasVividos = `Has vivido aproximadamente ${diasVividos} días.`;
+                alert(mensajeDiasVividos);
+            }
+    
+            // Agregar un evento al formulario para manejar el envío
+            document.getElementById("datosUsuarioForm").addEventListener("submit", mostrarMensajeBienvenida);
+        </script>
+    </main>
+
+    <footer>
+
+    </footer>
+
+</body>
+</html>
